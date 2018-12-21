@@ -1,10 +1,17 @@
-import { saveQuestion, saveQuestionAnswer } = '../utils/api'
+import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 export const SAVE_ANSWER = 'SAVE_ANSWER'
 
-function saveAnswer({ authedUser, qid, answer }){
+export function receiveQuestions(questions){
+	return{
+		type: RECEIVE_QUESTIONS,
+		questions
+	}
+}
+
+function _saveAnswer({ authedUser, qid, answer }){
 	return{
 		type: SAVE_ANSWER,
 		authedUser,
@@ -22,11 +29,12 @@ export function handleSaveAnswer(qid, answer){
 			qid,
 			answer
 		})
+		.then(() => dispatch(_saveAnswer({ authedUser, qid, answer })))
 
 	}
 }
 
-function saveQuestion(question){
+function _saveQuestion(question){
 	return{
 		type: SAVE_QUESTION,
 		question,
@@ -35,13 +43,8 @@ function saveQuestion(question){
 
 export function handleSaveQuestion(question){
 	return (dispatch) => {
-		dispatch(saveQuestion(question))
 
 		return saveQuestion(question)
-			.catch((e) => {
-				console.warn('Error in handleSaveQuestion: ', e)
-				dispatch(saveQuestion(question))
-				alert("Error Saving Question.")
-			})
+			.then((res) => dispatch(_saveQuestion(res)))
 	}
 }
