@@ -18,7 +18,7 @@ class QuestionBlock extends Component{
 					</div>
 					<div className="block__avatar">
 						<div className="block__avatar-wrap">
-							<img src={question.avatarURL} />
+							<img src={question.avatarURL} alt={question.name} />
 						</div>
 					</div>
 					<div className="block__question">

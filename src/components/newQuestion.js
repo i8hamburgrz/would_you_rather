@@ -29,7 +29,7 @@ class NewQuestion extends Component{
 		e.preventDefault()
 
 		const { optionOneText, optionTwoText } = this.state
-		const { dispatch } = this.props
+		const { dispatch, history } = this.props
 
 		dispatch(handleSaveQuestion({optionOneText, optionTwoText, author: 'sarahedo' }))
 
@@ -37,6 +37,8 @@ class NewQuestion extends Component{
 			optionOneText:'',
 			optionTwoText: ''
 		}))
+
+		history.push(`/dashboard`)
 	}
 
 	disabled(){

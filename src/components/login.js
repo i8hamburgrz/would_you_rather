@@ -5,11 +5,19 @@ import { Link, withRouter } from 'react-router-dom'
 import logo from '../logo.svg';
 
 class Login extends Component{
+	componentDidMount(){
+		const loggedIn = localStorage.getItem('user') ? true : false
+		
+		if(loggedIn){
+			localStorage.removeItem('user')
+		}
+	}
 
 	login = (event) => {
 		const { history, dispatch } = this.props
 		
 		loginUser(event.target.value, dispatch)
+		localStorage.setItem('user', event.target.value)
 		history.push(`/dashboard`)
 	}
 
