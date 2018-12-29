@@ -8,6 +8,7 @@ import HomePage from './homepage'
 import Login from './login'
 import Nav from './nav'
 import NavUser from './nav_user'
+import Question from './question'
 import { loginUser } from '../actions/shared'
 
 class App extends Component {
@@ -58,6 +59,11 @@ class App extends Component {
                       exact
                       component = {props =>
                          this.loggedOut() ? <NewQuestion {...props}/> : <Redirect to="/" />} />
+
+                    <Route 
+                      path="/question/:id"
+                      component = {props =>
+                         this.loggedOut() ? <Question {...props}/> : <Redirect to="/" />} />
                   </div>
               }
         </div>
@@ -67,10 +73,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ users }){
+function mapStateToProps({ users, questions }){
   return{
     users: users,
-    loading: Object.keys(users).length === 0
+    loading: Object.keys(questions).length === 0
   }
 }
 

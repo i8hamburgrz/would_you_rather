@@ -193,6 +193,13 @@ code {
     box-shadow:2px 4px 8px 0 rgba(0, 0, 0, 0.1);
   }
 
+  select{
+    width: calc(100% - 30px);
+    height: 30px;
+    font-size: 1rem;  
+  }
+  
+
   &--login{
     width:620px;
     margin:0 auto;
@@ -256,6 +263,10 @@ code {
       top:30px;
     }
 
+    &.align-left{
+      text-align: left;
+    }
+
     h3{
       margin-top:0;
       margin-bottom:15px;
@@ -269,7 +280,7 @@ code {
       margin:0;
     }
 
-    button{
+    a{
       border: 1px solid #02b3e4;
       padding: 5px;
       border-radius: 4px;
@@ -282,6 +293,10 @@ code {
       transition:background 0.3s ease;
       position:relative;
       cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      font-size:0.875rem;
+      text-align: center;
 
       &:focus{
         outline:none;
@@ -300,10 +315,25 @@ code {
   }
 }
 
+.question{
+  background:#fff;
+  padding:30px;
+  margin:0 auto;
+  box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
+  max-width: 620px;
+  border: 1px solid #dbe2e8;
+  text-align: center;
+  box-sizing:border-box;
+
+  .block:hover{
+    box-shadow:none;
+  }
+}
+
 .logo {
   img{
     animation: App-logo-spin infinite 20s linear;
-    height: 40vmin;
+    height: 30vmin;
   }
   
 }

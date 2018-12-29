@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestions } from '../utils/helper'
+import { Link, withRouter } from 'react-router-dom'
 
 class QuestionBlock extends Component{
-	state = {
-
-	}
-
 	render(){
-		const { question, showAnswered } = this.props
+		const { question, showAnswered, id } = this.props
 
 		return (
 			<li style={{display: showAnswered  === question.isAnswered ? 'block' : 'none' }}>
@@ -18,7 +15,7 @@ class QuestionBlock extends Component{
 					</div>
 					<div className="block__avatar">
 						<div className="block__avatar-wrap">
-							<img src={question.avatarURL} alt={question.name} />
+							<img src={window.location.origin + '/' + question.avatarURL} alt={question.name} />
 						</div>
 					</div>
 					<div className="block__question">
@@ -27,7 +24,7 @@ class QuestionBlock extends Component{
 						<p>or</p>
 						<p>{ question.optionTwo.text }</p>
 
-						<button>View Poll</button>
+						<Link to={`/question/${id}`} id={id}> View Poll </Link>
 					</div>
 				</div>
 			</li>
@@ -35,10 +32,11 @@ class QuestionBlock extends Component{
 	}
 }
 
-function mapStateToProps({ questions, users, authedUser }, { id }){
+function mapStateToProps({ questions, users, authedUser }, {id}){
 	const question = questions[id]
 
 	return {
+		id,
 		question: formatQuestions(question, users[question.author], authedUser)
 	}	
 	

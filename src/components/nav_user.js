@@ -20,7 +20,7 @@ class NavUser extends Component{
 			{user && 
 				<span> 
 					Hello, {user.name}
-					<div className="nav__avatar"><img src={user.avatarURL} alt={user.name} /></div>
+					<div className="nav__avatar"><img src={window.location.origin + '/' + user.avatarURL} alt={user.name} /></div>
 					<a href="#" onClick={(e) => this.logout(e)}>Logout</a> 
 				</span>
 			}
