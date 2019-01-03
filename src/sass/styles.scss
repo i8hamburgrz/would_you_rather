@@ -330,6 +330,50 @@ code {
   }
 }
 
+.results{
+  margin:0;
+  padding:0;
+
+  li{
+    list-style: none;
+    border:1px solid rgb(219, 226, 232);
+    border-radius:4px;
+    padding:15px;
+    box-sizing:border-box;
+
+    &:first-child{
+      margin-bottom:15px;
+    }
+
+    p{
+      font-weight:bold;
+
+      &:first-child{
+        font-size: 0.875rem;
+        margin-bottom:10px;
+      }
+
+      &:last-child{
+        text-align: center;
+        font-size:0.65rem;
+      }
+    }
+  }
+}
+
+.meter{
+  border:1px solid #02b3e4;
+  border-radius:4px;
+
+  &__wrap{
+    background-color: #02b3e4;
+    text-align: right;
+    padding: 3px;
+    font-size: 0.875rem;
+    color: white;
+  }
+}
+
 .logo {
   img{
     animation: App-logo-spin infinite 20s linear;

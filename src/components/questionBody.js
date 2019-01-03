@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleSaveAnswer } from '../actions/questions'
+
 
 class QuestionBody extends Component{
 	state = {
@@ -12,8 +14,13 @@ class QuestionBody extends Component{
      	})
 	}
 
-	onSubmit = () => {
+	onSubmit = (e) => {
+		e.preventDefault()
 
+		const { answer } = this.state
+		const { dispatch, question } = this.props
+
+		dispatch(handleSaveAnswer(question.id, answer))
 	}
 
 	render(){
@@ -22,6 +29,8 @@ class QuestionBody extends Component{
 
 		return (
 			<div>
+				<h3>Would you rather?</h3>
+				
 			 	<p><input 
 			 		type="radio" 
 			 		name="answer"
@@ -35,7 +44,7 @@ class QuestionBody extends Component{
 			 		checked={answer === question.optionTwo.text}  
 			 		value={question.optionTwo.text} /> {question.optionTwo.text}</p>
 			 
-				<a href="#">Submit Answer</a>
+				<a href="#" onClick={e => this.onSubmit(e)}>Submit Answer</a>
 			</div>
 		)
 	}

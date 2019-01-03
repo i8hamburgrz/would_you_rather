@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestions } from '../utils/helper'
 import QuestionBody from '../components/questionBody'
+import QuestionBodyResult from '../components/questionBodyResult'
 
 class Question extends Component{
 	render(){
-		const { question, user } = this.props
+		const { question, user, history } = this.props
 
 		return (
 			<div className="question">
@@ -19,11 +20,9 @@ class Question extends Component{
 						</div>
 					</div>
 					<div className="block__question align-left">
-						<h3>Would you rather?</h3>
-						 
-						{!question.isAnswered && 
-						 	<QuestionBody
-						 		question={question} />
+						{!question.isAnswered ? 
+						 	<QuestionBody question={question} />
+					 		: <QuestionBodyResult question={question} />
 					 	}
 					 	
 					</div>

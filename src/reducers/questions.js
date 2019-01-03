@@ -19,7 +19,14 @@ export default function questions(state = {}, action){
 				...state,
 				[action.qid]: {
 					...state[action.qid],
-					votes: [action.answer].votes.concat([action.authedUser])
+					optionOne:{
+					  ...state[action.qid].optionOne,
+					  votes: state[action.qid].optionOne.text === action.answer ? state[action.qid].optionOne.votes.concat([action.authedUser]) : state[action.qid].optionOne.votes,
+					},
+					optionTwo:{
+					  ...state[action.qid].optionTwo,
+					  votes:state[action.qid].optionTwo.text === action.answer ? state[action.qid].optionTwo.votes.concat([action.authedUser]) : state[action.qid].optionTwo.votes
+					}
 				}
 			}
 

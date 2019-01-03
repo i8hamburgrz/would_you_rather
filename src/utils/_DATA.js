@@ -189,9 +189,13 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         ...questions,
         [qid]: {
           ...questions[qid],
-          [answer]: {
-            ...questions[qid][answer],
-            votes: questions[qid][answer].votes.concat([authedUser])
+          optionOne:{
+            ...questions[qid].optionOne,
+            votes: questions[qid].optionOne.text === answer ? questions[qid].optionOne.votes.concat([authedUser]) : questions[qid].optionOne.votes,
+          },
+          optionTwo:{
+            ...questions[qid].optionTwo,
+            votes:questions[qid].optionTwo.text === answer ? questions[qid].optionTwo.votes.concat([authedUser]) : questions[qid].optionTwo.votes
           }
         }
       }
