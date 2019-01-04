@@ -10,6 +10,7 @@ import Nav from './nav'
 import NavUser from './nav_user'
 import Question from './question'
 import { loginUser } from '../actions/shared'
+import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
   componentDidMount(){
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+        <LoadingBar className="loader" />
         <div className="nav">
           <div className="nav__wrap">
             <Nav />
@@ -50,18 +52,17 @@ class App extends Component {
                       component = {props =>
                          !this.loggedOut() ? <Login {...props}/> : <Redirect to="/dashboard" />}/>
                     <Route 
-                      path="/dashboard"
-                      exact
+                      path="/dashboard"                      
                       component = {props =>
                          this.loggedOut() ? <HomePage {...props}/> : <Redirect to="/" />}/>
                     <Route 
                       path="/add"
-                      exact
                       component = {props =>
                          this.loggedOut() ? <NewQuestion {...props}/> : <Redirect to="/" />} />
 
                     <Route 
                       path="/question/:id"
+                      exact
                       component = {props =>
                          this.loggedOut() ? <Question {...props}/> : <Redirect to="/" />} />
                   </div>

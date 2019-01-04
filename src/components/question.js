@@ -8,6 +8,19 @@ class Question extends Component{
 	render(){
 		const { question, user, history } = this.props
 
+		if(!question){
+			return (
+				<div className="question">
+					<div className="block">
+						<div className="block__title">404 Error</div>
+						<div className="block__question full">
+							Sorry! The question you are looking for does not exist.
+						</div>
+					</div>
+				</div>
+			)
+		}
+
 		return (
 			<div className="question">
 				<div className="block">
