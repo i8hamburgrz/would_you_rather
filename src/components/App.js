@@ -9,6 +9,7 @@ import Login from './login'
 import Nav from './nav'
 import NavUser from './nav_user'
 import Question from './question'
+import LeaderBoard from './leaderboard'
 import { loginUser } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 
@@ -59,6 +60,11 @@ class App extends Component {
                       path="/add"
                       component = {props =>
                          this.loggedOut() ? <NewQuestion {...props}/> : <Redirect to="/" />} />
+
+                    <Route 
+                      path="/leaderboard"
+                      component = {props =>
+                         this.loggedOut() ? <LeaderBoard {...props}/> : <Redirect to="/" />} />
 
                     <Route 
                       path="/question/:id"
